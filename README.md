@@ -1,5 +1,30 @@
 # FastClick #
 
+### change for fanglibs
+```js
+// focus
+	FastClick.prototype.focus = function(targetElement) {
+		var length;
+		if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
+			length = targetElement.value.length;
+			targetElement.setSelectionRange(length, length);
+		}
+		targetElement.focus();
+	};
+
+
+// onTouchEnd
+	var _isTextInput = function() {
+  	return targetTagName === 'textarea' || targetTagName === 'dl' || (targetTagName === 'input' && (targetElement.type === 'text' || targetElement.type === 'search' || targetElement.type === 'password' || targetElement.type === 'number' || targetElement.type === 'email'));
+  	};
+	// Select elements need the event to go through on iOS 4, otherwise the selector menu won't open.
+	// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
+	if (!deviceIsIOS || targetTagName !== 'select' && !_isTextInput()) {
+		this.targetElement = null;
+		event.preventDefault();
+	}
+```
+
 FastClick is a simple, easy-to-use library for eliminating the 300ms delay between a physical tap and the firing of a `click` event on mobile browsers. The aim is to make your application feel less laggy and more responsive while avoiding any interference with your current logic.
 
 FastClick is developed by [FT Labs](http://labs.ft.com/), part of the Financial Times.
