@@ -41,7 +41,7 @@ FastClick.attach(document.body)
 
 # or
 var FastClick = require('fastclick')
-FastClick.attach(document.body, options)
+FastClick.attach(document.body)
 
 ```
 
