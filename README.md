@@ -1,7 +1,13 @@
 # FastClick #
 
-### change for fanglibs
+### change
+解决ios下input偶尔不能获取焦点问题及光标定位问题
+
+[github](https://github.com/fanglibs/fastclick)
+forked from [ftlabs/fastclick](https://github.com/ftlabs/fastclick)
+
 ```js
+// source code change
 // focus
 	FastClick.prototype.focus = function(targetElement) {
 		var length;
@@ -24,6 +30,22 @@
 		event.preventDefault();
 	}
 ```
+
+```bash
+# npm install
+npm install thinkive-hvue
+
+# main.js
+import FastClick from 'fastclick-hvue'
+FastClick.attach(document.body)
+
+# or
+var FastClick = require('fastclick')
+FastClick.attach(document.body, options)
+
+```
+
+**The original documentation**
 
 FastClick is a simple, easy-to-use library for eliminating the 300ms delay between a physical tap and the firing of a `click` event on mobile browsers. The aim is to make your application feel less laggy and more responsive while avoiding any interference with your current logic.
 
@@ -123,7 +145,7 @@ FastClick.attach(document.body, options);
 
 ### Package managers ###
 
-You can install FastClick using [Component](https://github.com/component/component), [npm](https://npmjs.org/package/fastclick) or [Bower](http://bower.io/).
+You can install FastClick using [Component](https://github.com/component/component), [npm](https://www.npmjs.com/package/fastclick) or [Bower](http://bower.io/).
 
 For Ruby, there's a third-party gem called [fastclick-rails](http://rubygems.org/gems/fastclick-rails). For .NET there's a [NuGet package](http://nuget.org/packages/FastClick).
 
@@ -138,7 +160,7 @@ Sometimes you need FastClick to ignore certain elements. You can do this easily 
 
 #### Use case 1: non-synthetic click required ####
 
-Internally, FastClick uses `document.createEvent` to fire a synthetic `click` event as soon as `touchend` is fired by the browser. It then suppresses the additional `click` event created by the browser after that. In some cases, the non-synthetic `click` event created by the browser is required, as described in the [triggering focus example](http://ftlabs.github.com/fastclick/examples/focus.html).
+Internally, FastClick uses `document.createEvent` to fire a synthetic `click` event as soon as `touchend` is fired by the browser. It then suppresses the additional `click` event created by the browser after that. In some cases, the non-synthetic `click` event created by the browser is required, as described in the [triggering focus example](https://www.npmjs.com/package/fastclick/examples/focus.html).
 
 This is where the `needsclick` class comes in. Add the class to any element that requires a non-synthetic click.
 
